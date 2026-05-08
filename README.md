@@ -2,7 +2,7 @@
 
 Site vitrine pour **Caroline Saintenoy**, réflexologue à Nort-Leulinghem (62), spécialisée en cancérologie et handicap.
 
-🌐 **Site en production** : [reflexologie-audomarois.com](https://reflexologie-audomarois.com/)
+> Projet en cours — le site n'est pas encore déployé en production sous ma version.
 
 ## Cliente
 
