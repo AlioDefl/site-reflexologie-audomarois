@@ -366,6 +366,25 @@
             padding: 2rem;
         }
 
+        .hero-logo {
+            display: block;
+            margin: 0 auto 1.8rem;
+            max-width: 200px;
+            width: 100%;
+            height: auto;
+            opacity: 0;
+            transform: translateY(20px) scale(0.95);
+            animation: fade-up-logo 1s var(--ease-out) 0.1s forwards;
+            filter: drop-shadow(0 4px 16px rgba(122, 101, 85, 0.12));
+        }
+
+        @keyframes fade-up-logo {
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
         .hero-badge {
             display: inline-flex;
             align-items: center;
@@ -1509,6 +1528,7 @@
         <div class="hero-leaf hero-leaf-3"></div>
 
         <div class="hero-content">
+            <img src="img/entete.PNG" alt="CS Réflexologie" class="hero-logo">
             <div class="hero-badge">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M8 12l3 3 5-5"/></svg>
                 Réflexologue certifiée — Audomarois
@@ -1653,17 +1673,20 @@
                 <article class="service-card reveal">
                     <div class="service-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="3"/>
-                            <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+                            <circle cx="12" cy="8" r="5"/>
+                            <circle cx="10" cy="8" r="0.6" fill="currentColor"/>
+                            <circle cx="14" cy="8" r="0.6" fill="currentColor"/>
+                            <path d="M10 10.5c.5.7 1.2 1 2 1s1.5-.3 2-1"/>
+                            <path d="M5 21v-1a7 7 0 0 1 14 0v1"/>
                         </svg>
                     </div>
-                    <h3>Auriculo-réflexologie</h3>
+                    <h3>Réflexologie pédiatrique</h3>
                     <p>
-                        Réflexologie exercée sur le pavillon de l'oreille selon la 
-                        cartographie de Paul Nogier, particulièrement efficace pour 
-                        l'arrêt du tabac et la perte de poids.
+                        Pour les enfants de moins de 12 ans. Soulage les maux du
+                        quotidien : poussées dentaires, troubles du transit, du sommeil,
+                        anxiété et troubles du comportement.
                     </p>
-                    <span class="service-tag">60 min · Spécialisé</span>
+                    <span class="service-tag">30-45 min · Enfants</span>
                 </article>
 
                 <article class="service-card reveal">
@@ -1800,12 +1823,12 @@
                 </div>
 
                 <div class="price-card reveal">
-                    <h3>Auriculo-réflexologie</h3>
-                    <p class="duration">Spécialisé · 60 minutes</p>
-                    <p class="price">65€ <small>à partir de</small></p>
+                    <h3>Réflexologie pédiatrique</h3>
+                    <p class="duration">Enfants - 12 ans · 30 à 45 minutes</p>
+                    <p class="price">35€</p>
                     <p class="desc">
-                        Arrêt du tabac, perte de poids, troubles chroniques. 
-                        Selon la cartographie de Paul Nogier.
+                        Soulage les maux du quotidien : poussées dentaires, transit,
+                        sommeil, anxiété, troubles du comportement.
                     </p>
                 </div>
 
@@ -1814,8 +1837,18 @@
                     <p class="duration">Séances adaptées</p>
                     <p class="price">60€</p>
                     <p class="desc">
-                        Accompagnement personnalisé pour les personnes 
+                        Accompagnement personnalisé pour les personnes
                         en situation de handicap.
+                    </p>
+                </div>
+
+                <div class="price-card reveal">
+                    <h3>Reiki</h3>
+                    <p class="duration">Soin énergétique · 60 minutes</p>
+                    <p class="price">60€</p>
+                    <p class="desc">
+                        Pratique japonaise par imposition des mains qui stimule
+                        l'autoguérison et rétablit l'équilibre du corps et de l'esprit.
                     </p>
                 </div>
             </div>
