@@ -9,17 +9,67 @@ DirectoryIndex index.html
 AddDefaultCharset UTF-8
 
 # --- Redirection 301 des vieilles URLs WordPress ---
-# Toute URL qui ne correspond à aucun fichier ou dossier existant
-# est redirigée en 301 (permanent) vers la page d'accueil.
-# Cela évite les erreurs 404 sur les anciens liens indexés par Google.
+# Les anciennes URLs (indexées par Google) sont redirigées vers la
+# section correspondante du nouveau site en une seule page.
 <IfModule mod_rewrite.c>
     RewriteEngine On
 
-    # Force HTTPS si non actif
+    # --- Force HTTPS ---
     RewriteCond %{HTTPS} !=on
     RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-    # Si le fichier/dossier n'existe pas, redirection vers l'accueil
+    # --- Redirections thématiques (WordPress → sections du nouveau site) ---
+
+    # Contact
+    RewriteRule ^contact/?$ /#contact [R=301,L,NE]
+    RewriteRule ^contactez-moi/?$ /#contact [R=301,L,NE]
+    RewriteRule ^nous-contacter/?$ /#contact [R=301,L,NE]
+
+    # À propos / Caroline
+    RewriteRule ^author/caroline/?$ /#apropos [R=301,L,NE]
+    RewriteRule ^a-propos/?$ /#apropos [R=301,L,NE]
+    RewriteRule ^qui-suis-je/?$ /#apropos [R=301,L,NE]
+    RewriteRule ^caroline/?$ /#apropos [R=301,L,NE]
+    RewriteRule ^caroline-saintenoy/?$ /#apropos [R=301,L,NE]
+
+    # Prestations / Soins
+    RewriteRule ^prestations?/?$ /#soins [R=301,L,NE]
+    RewriteRule ^soins?/?$ /#soins [R=301,L,NE]
+    RewriteRule ^nos-soins/?$ /#soins [R=301,L,NE]
+    RewriteRule ^services?/?$ /#soins [R=301,L,NE]
+
+    # Types de réflexologie
+    RewriteRule ^(la-)?reflexologie-plantaire/?$ /#soins [R=301,L,NE]
+    RewriteRule ^onco-reflexologie/?$ /#soins [R=301,L,NE]
+    RewriteRule ^reflexologie-pediatrique/?$ /#soins [R=301,L,NE]
+    RewriteRule ^reflexologie-handicap/?$ /#soins [R=301,L,NE]
+    RewriteRule ^reiki/?$ /#soins [R=301,L,NE]
+    RewriteRule ^lhypnose/?$ / [R=301,L,NE]
+    RewriteRule ^hypnose/?$ / [R=301,L,NE]
+    RewriteRule ^univers-bebe/?$ / [R=301,L,NE]
+    RewriteRule ^portage(-en-echarpe)?/?$ / [R=301,L,NE]
+
+    # Tarifs
+    RewriteRule ^tarifs?/?$ /#tarifs [R=301,L,NE]
+    RewriteRule ^prix/?$ /#tarifs [R=301,L,NE]
+
+    # Bienfaits
+    RewriteRule ^bienfaits/?$ /#bienfaits [R=301,L,NE]
+
+    # Formations
+    RewriteRule ^formations?/?$ /#formations [R=301,L,NE]
+
+    # Accueil / Bienvenue
+    RewriteRule ^bienvenue/?$ / [R=301,L,NE]
+    RewriteRule ^accueil/?$ / [R=301,L,NE]
+    RewriteRule ^home/?$ / [R=301,L,NE]
+
+    # Articles / Blog / Presse
+    RewriteRule ^articles?(-de-presse)?/?$ / [R=301,L,NE]
+    RewriteRule ^blog/?$ / [R=301,L,NE]
+    RewriteRule ^presse/?$ / [R=301,L,NE]
+
+    # --- Catch-all : toute autre URL inexistante → accueil ---
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_URI} !^/$
