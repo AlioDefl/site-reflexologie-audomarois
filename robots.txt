@@ -1,0 +1,19 @@
+# robots.txt — Cabinet de Réflexologie de l'Audomarois
+# https://reflexologie-audomarois.com
+
+User-agent: *
+Allow: /
+
+# Bloquer les anciennes URLs WordPress restées indexées
+Disallow: /wp-admin/
+Disallow: /wp-content/
+Disallow: /wp-includes/
+Disallow: /wp-login.php
+Disallow: /author/
+Disallow: /category/
+Disallow: /tag/
+Disallow: /feed/
+Disallow: /?p=
+
+# Sitemap
+Sitemap: https://reflexologie-audomarois.com/sitemap.xml

@@ -1,0 +1,76 @@
+# ==========================================================
+# Cabinet de Réflexologie de l'Audomarois — Configuration serveur
+# ==========================================================
+
+# --- Fichier par défaut ---
+DirectoryIndex index.html
+
+# --- Encodage UTF-8 par défaut ---
+AddDefaultCharset UTF-8
+
+# --- Redirection 301 des vieilles URLs WordPress ---
+# Toute URL qui ne correspond à aucun fichier ou dossier existant
+# est redirigée en 301 (permanent) vers la page d'accueil.
+# Cela évite les erreurs 404 sur les anciens liens indexés par Google.
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Force HTTPS si non actif
+    RewriteCond %{HTTPS} !=on
+    RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+    # Si le fichier/dossier n'existe pas, redirection vers l'accueil
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_URI} !^/$
+    RewriteRule ^.*$ / [R=301,L]
+</IfModule>
+
+# --- Compression Gzip (accélère le chargement) ---
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript
+    AddOutputFilterByType DEFLATE application/javascript application/x-javascript application/json
+    AddOutputFilterByType DEFLATE image/svg+xml
+</IfModule>
+
+# --- Cache navigateur (accélère les visites répétées) ---
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresDefault "access plus 1 month"
+
+    # HTML : cache court pour récupérer rapidement les mises à jour
+    ExpiresByType text/html "access plus 1 hour"
+
+    # Images : cache long
+    ExpiresByType image/jpeg "access plus 6 months"
+    ExpiresByType image/png "access plus 6 months"
+    ExpiresByType image/gif "access plus 6 months"
+    ExpiresByType image/svg+xml "access plus 6 months"
+    ExpiresByType image/x-icon "access plus 1 year"
+
+    # CSS / JS : cache long
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+
+    # Polices
+    ExpiresByType font/woff "access plus 1 year"
+    ExpiresByType font/woff2 "access plus 1 year"
+</IfModule>
+
+# --- Sécurité : masquer les fichiers sensibles ---
+<FilesMatch "^\.">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+<Files ".htaccess">
+    Order allow,deny
+    Deny from all
+</Files>
+
+# --- En-têtes de sécurité de base ---
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
